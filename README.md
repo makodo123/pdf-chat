@@ -29,7 +29,7 @@
 | 前端框架 | React 18 + TypeScript |
 | 建置工具 | Vite |
 | 樣式 | Tailwind CSS |
-| AI 模型 | Gemini 2.0 Flash |
+| AI 模型 | Gemini 2.5 Flash Preview（gemini-2.5-flash-preview） |
 | PDF 傳送 | FileReader → base64 → Gemini inlineData |
 | 部署 | GitHub Pages |
 
