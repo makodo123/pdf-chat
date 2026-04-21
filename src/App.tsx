@@ -79,9 +79,9 @@ function CopyButton({ text }: { text: string }) {
     <button
       onClick={copy}
       title="複製"
-      className="opacity-0 group-hover:opacity-100 absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-white dark:bg-gray-600 shadow text-gray-400 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 text-xs transition-opacity"
+      className="text-xs text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
     >
-      {copied ? '✓' : '⎘'}
+      {copied ? '✓ 已複製' : '⎘ 複製'}
     </button>
   )
 }
@@ -386,7 +386,7 @@ export default function App() {
                   )}
                   {messages.map((m, i) => (
                     <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className="relative group max-w-[85%]">
+                      <div className="max-w-[85%] flex flex-col gap-1">
                         <div
                           className={`px-4 py-2 rounded-2xl text-sm ${
                             m.role === 'user'
@@ -404,14 +404,18 @@ export default function App() {
                             </div>
                           )}
                         </div>
-                        {m.role === 'model' && m.text && <CopyButton text={m.text} />}
-                        {isLastModelMsg(i) && (
-                          <button
-                            onClick={regenerate}
-                            className="mt-1 text-xs text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                          >
-                            ↺ 重試
-                          </button>
+                        {m.role === 'model' && m.text && (
+                          <div className="flex gap-3 px-1">
+                            <CopyButton text={m.text} />
+                            {isLastModelMsg(i) && (
+                              <button
+                                onClick={regenerate}
+                                className="text-xs text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                              >
+                                ↺ 重試
+                              </button>
+                            )}
+                          </div>
                         )}
                       </div>
                     </div>
